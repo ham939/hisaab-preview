@@ -236,6 +236,31 @@ button.ghost { background: transparent; }
 .readout dd { margin: .2rem 0 0; font-size: var(--step-1); font-variant-numeric: tabular-nums; font-weight: 500; }
 .readout dd.accent { color: var(--accent); }
 
+/* ────────────────────────────────────────────────────── the live app ─── */
+/* The one section on this page that is not writing about the work but is the
+   work. It sits directly under the masthead because somebody who came here to
+   try the thing should not have to read an essay first. */
+.try { background: var(--surface); }
+.try h2 { font-size: var(--step-2); margin-bottom: .5rem; }
+.try .eyebrow { margin-bottom: .9rem; }
+.try .prose { color: var(--ink-soft); }
+.try .small { font-size: var(--step--1); color: var(--muted); margin-top: 1rem; }
+.cta {
+  display: inline-block; margin-top: 1.4rem;
+  font-weight: 600; font-size: var(--step-0);
+  padding: .72rem 1.5rem;
+  background: var(--accent); color: var(--surface);
+  border: 1px solid var(--accent);
+  text-decoration: none;
+}
+/* The label sits on the accent, so it has to come from the *opposite* end of
+   the ramp in each theme rather than from one fixed value. Spelled out for all
+   three states — explicit choice, explicit choice the other way, and the
+   default where nothing is stamped on the document at all. */
+:root[data-theme="dark"] .cta, :root:not([data-theme="light"]) .cta { color: #0d1111; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .cta { color: #f7f9f9; } }
+.cta:hover { filter: brightness(1.12); text-decoration: none; }
+
 /* ───────────────────────────────────────────────────────── the bars ─── */
 .milestones { display: grid; gap: 0; border-top: 1px solid var(--rule); }
 .ms {
@@ -302,6 +327,27 @@ footer .stack { --gap: .5rem; }
     </div>
   </div>
 </header>
+<!-- LIVE-APP:BEGIN -->
+<section id="try" class="try">
+  <div class="wrap">
+    <p class="eyebrow">Try it</p>
+    <h2>The half-built thing itself.</h2>
+    <p class="prose">
+      Not a video and not a screenshot — the actual software, running right now.
+      Sign in and press whatever you like. The business inside it is invented, and
+      it is put back the way it was every so often, so nothing you type can break
+      anything.
+    </p>
+    <p><a class="cta" href="https://rod-ips-pot-availability.trycloudflare.com">Open Hisaab</a></p>
+    <p class="prose small">
+      It runs on one laptop rather than on rented servers, which is the whole
+      point of how it is being built — but it does mean the door is occasionally
+      shut. If it will not open, try again a little later.
+    </p>
+  </div>
+</section>
+<!-- LIVE-APP:END -->
+
 
 <!-- ─────────────────────────────────────────────────────────────────── -->
 <section>
