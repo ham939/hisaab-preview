@@ -322,8 +322,9 @@ footer .stack { --gap: .5rem; }
 
     <div class="notice">
       <strong>This is a preview, not a product.</strong> The engine underneath — the part that must never be
-      wrong — is built and tested. Ten screens sit on top of it and you can sign into them further down this
-      page. Most of the day-to-day work is still missing, and every missing piece is named rather than hidden.
+      wrong — is built and tested. Nineteen screens sit on top of it, including the books, and you can sign
+      into them further down this page. Most of the day-to-day work is still missing, and every missing piece
+      is named rather than hidden.
       This page exists so you can tell us where we have the business wrong <em>while</em> the rest is built.
     </div>
   </div>
@@ -392,7 +393,32 @@ footer .stack { --gap: .5rem; }
       files ends up as one record marked as both, never as two records with the
       balance split down the middle, and an import can only ever add a side to
       somebody &mdash; it cannot take one away and hide what they owe you.
-      Everything else in the menu is listed as not built, on purpose.
+    </p>
+    <p class="prose small">
+      Then <strong>The books</strong>, which is the part an accountant asks about
+      first. <strong>Trial balance</strong> says <em>the two sides match</em>, and
+      it is not a decoration &mdash; an entry that does not balance is refused
+      twice, once by the code and once by the database itself, so an unbalanced
+      book is not a thing that can exist here. <strong>Did you make money?</strong>
+      and <strong>What it is worth</strong> are the same two statements every
+      package has, under the names people actually use. All three are worked out
+      in one place, from one reading of the accounts, because three separate
+      calculations is how software ends up showing two answers that disagree by a
+      few rupees with nobody able to say which one is lying.
+    </p>
+    <p class="prose small">
+      Open <strong>Entries</strong> and look for a delete button. There isn&rsquo;t
+      one, and there is no edit either. A posted entry is finished; a mistake is
+      corrected by <strong>Reverse this entry</strong>, which writes the opposite
+      one and leaves both on the record, so the story of a wrong figure and its
+      correction is still readable a year later. Open any account and it has its
+      own running column, brought forward from before the dates you asked for.
+      The stock figures in these books are not typed in to match the stock screen
+      &mdash; they are read out of the stock ledger itself, movement by movement,
+      which is why the raw material on the balance sheet is the same number to the
+      last paisa as the raw material on <strong>Stock</strong>. Two screens that
+      disagree by four hundred rupees is the thing this is built to make
+      impossible. Everything else in the menu is listed as not built, on purpose.
     </p>
     <p class="prose small">
       One thing you cannot see in the demo is running underneath all of it. Every
@@ -670,15 +696,18 @@ footer .stack { --gap: .5rem; }
 
         npx vitest run          the first two, off the last line
         pnpm audit              the third
-        apps/web/src/nav.tsx    the fourth, counting what a person can open
+        apps/web/src/app.tsx    the fourth, counting distinct screen components
+                                behind the routes — a list and its detail page
+                                are two, new-and-edit is one, and the customer
+                                and supplier pages are one screen twice over
 
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">2,024</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">81</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">2,256</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">90</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
-      <div><dt>Screens you can use today</dt><dd class="num">11</dd></div>
+      <div><dt>Screens you can use today</dt><dd class="num">19</dd></div>
     </dl>
 
     <div class="milestones">
@@ -687,7 +716,7 @@ footer .stack { --gap: .5rem; }
       <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms, barcodes, pack sizes and the spreadsheet importer &mdash; for items and for customers and suppliers &mdash; are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
       <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag done">Built</span></div>
-      <div class="ms"><code>M4</code><span class="name">The books<small>Chart of accounts, journals, trial balance, profit and loss</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M4</code><span class="name">The books<small>The chart of accounts, entries you can write and cannot edit, the trial balance, what you made and what it is worth &mdash; all on screen, and the demo's books are drawn from its own stock ledger rather than typed to match</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M5</code><span class="name">Buying<small>Order, receipt, bill, supplier balances and ageing</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M6</code><span class="name">Selling<small>Order, delivery, invoice, payment, customer balances, credit limits</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M7</code><span class="name">The counter, offline<small>Keeps billing with no internet, catches up by itself</small></span><span class="tag next">Next</span></div>
