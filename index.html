@@ -333,16 +333,27 @@ footer .stack { --gap: .5rem; }
     <p class="eyebrow">Try it</p>
     <h2>The half-built thing itself.</h2>
     <p class="prose">
-      Not a video and not a screenshot — the actual software, running right now.
-      Sign in and press whatever you like. The business inside it is invented, and
-      it is put back the way it was every so often, so nothing you type can break
-      anything.
+      Not a video and not a screenshot &mdash; the actual software, running right now.
+      Sign in and press whatever you like. The business inside it is invented, a
+      textile mill in Karachi with five customers and suppliers and a handful of
+      items, and it is put back the way it was every so often, so nothing you type
+      can break anything.
+    </p>
+    <p class="prose">
+      <strong>Email</strong> hamza@hisaab.pk &nbsp;&middot;&nbsp; <strong>Password</strong> hamza
     </p>
     <p><a class="cta" href="https://guides-pockets-cooking-taxi.trycloudflare.com">Open Hisaab</a></p>
     <p class="prose small">
+      Worth a look: <strong>Items</strong>, where a price and a tax treatment sit
+      on the same row and exempt is written as the word rather than as 0%;
+      <strong>Customers</strong>, where a business that both buys from you and
+      sells to you is one record and says so. Everything else in the menu is
+      listed as not built, on purpose.
+    </p>
+    <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
-      point of how it is being built — but it does mean the door is occasionally
-      shut. If it will not open, try again a little later.
+      point of how it is being built &mdash; but it does mean the door is
+      occasionally shut. If it will not open, try again a little later.
     </p>
   </div>
 </section>
@@ -582,11 +593,22 @@ footer .stack { --gap: .5rem; }
       </div>
     </div>
 
+    <!--
+      These four are typed by hand and go stale silently, which is the worst
+      way for a number on a page about honesty to be wrong. Before publishing,
+      re-read them from the source:
+
+        npx vitest run          the first two, off the last line
+        pnpm audit              the third
+        apps/web/src/nav.tsx    the fourth, counting what a person can open
+
+      Last checked: 1 September 2026.
+    -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">849</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">36</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,240</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">57</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
-      <div><dt>Screens you can use today</dt><dd class="num">0</dd></div>
+      <div><dt>Screens you can use today</dt><dd class="num">8</dd></div>
     </dl>
 
     <div class="milestones">
