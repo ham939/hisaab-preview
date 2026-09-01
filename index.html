@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hisaab — Preview</title>
+<meta name="description" content="Software for a Pakistani factory: buying, making, selling, and knowing what you earned. A preview of what is being built, and where it might be wrong.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Hisaab — Preview">
+<meta property="og:description" content="Powerful enough for a factory. Simple enough for your munshi. A build in progress.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2317553a'/%3E%3Cpath d='M26 26v48M26 50h26M52 26v48M62 74V26l14 48V26' stroke='%23eef0ec' stroke-width='7' fill='none' stroke-linecap='square'/%3E%3C/svg%3E">
+<style>
+/* ─────────────────────────────────────────────────────────── tokens ─── */
+:root {
+  --ground:      #ecefea;
+  --surface:     #f7f8f5;
+  --surface-2:   #e3e7e0;
+  --ink:         #131a16;
+  --ink-soft:    #3b453e;
+  --muted:       #616c65;
+  --rule:        #cbd2c9;
+  --rule-strong: #a9b3a8;
+  --green:       #17553a;
+  --green-ink:   #0f3b28;
+  --brass:       #7d6318;
+  --warn:        #8f3d16;
+  --shadow:      0 1px 0 rgba(19, 26, 22, .06);
+
+  --measure: 63ch;
+  --step--1: clamp(.78rem, .76rem + .1vw, .84rem);
+  --step-0:  clamp(1rem, .97rem + .16vw, 1.09rem);
+  --step-1:  clamp(1.2rem, 1.13rem + .34vw, 1.42rem);
+  --step-2:  clamp(1.5rem, 1.36rem + .68vw, 1.98rem);
+  --step-3:  clamp(2rem, 1.7rem + 1.5vw, 3.1rem);
+  --step-4:  clamp(2.6rem, 2rem + 3vw, 4.6rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #0d110e;
+    --surface:     #151a16;
+    --surface-2:   #1e251f;
+    --ink:         #e4e9e3;
+    --ink-soft:    #b6c0b6;
+    --muted:       #8b978c;
+    --rule:        #2a332b;
+    --rule-strong: #3d4a3f;
+    --green:       #56b98a;
+    --green-ink:   #8fd6b0;
+    --brass:       #c6a44b;
+    --warn:        #d98354;
+    --shadow:      none;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:      #0d110e;
+  --surface:     #151a16;
+  --surface-2:   #1e251f;
+  --ink:         #e4e9e3;
+  --ink-soft:    #b6c0b6;
+  --muted:       #8b978c;
+  --rule:        #2a332b;
+  --rule-strong: #3d4a3f;
+  --green:       #56b98a;
+  --green-ink:   #8fd6b0;
+  --brass:       #c6a44b;
+  --warn:        #d98354;
+  --shadow:      none;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: Fraunces, 'Iowan Old Style', Georgia, serif; font-weight: 500; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; text-decoration-color: var(--rule-strong); }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { width: min(100% - 2.5rem, 78rem); margin-inline: auto; }
+.prose { max-width: var(--measure); }
+.stack { display: flex; flex-direction: column; }
+.stack > * + * { margin-top: var(--gap, 1rem); }
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: var(--step--1);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+.urdu { font-family: 'Noto Nastaliq Urdu', serif; line-height: 2.4; direction: rtl; }
+
+/* ───────────────────────────────────────────────────────── masthead ─── */
+.masthead { padding: clamp(3rem, 9vw, 7rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.wordmark { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.wordmark h1 {
+  font-size: var(--step-4);
+  font-variation-settings: 'SOFT' 0, 'WONK' 1, 'opsz' 120;
+  letter-spacing: -.02em;
+  line-height: .95;
+}
+.wordmark .urdu { font-size: clamp(1.6rem, 1rem + 2.4vw, 3rem); color: var(--green); }
+.lede { font-size: var(--step-1); color: var(--ink-soft); margin-top: 1.6rem; max-width: 34ch; text-wrap: balance; }
+.claim {
+  font-family: Fraunces, Georgia, serif;
+  font-size: var(--step-2);
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  color: var(--green);
+  margin-top: 2.2rem;
+  max-width: 22ch;
+  line-height: 1.15;
+}
+
+.notice {
+  margin-top: 2.8rem;
+  border: 1px solid var(--rule-strong);
+  border-left: 4px solid var(--brass);
+  background: var(--surface);
+  padding: 1.1rem 1.3rem;
+  max-width: 54ch;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  box-shadow: var(--shadow);
+}
+.notice strong { color: var(--ink); }
+
+/* ────────────────────────────────────────────────────────── section ─── */
+section { padding-block: clamp(3rem, 7vw, 5.5rem); border-top: 1px solid var(--rule); }
+.section-head { display: grid; grid-template-columns: 1fr; gap: .6rem; margin-bottom: 2.6rem; }
+@media (min-width: 60rem) {
+  .section-head { grid-template-columns: 12rem 1fr; gap: 2.5rem; align-items: start; }
+}
+.section-head h2 { font-size: var(--step-2); font-variation-settings: 'SOFT' 0, 'WONK' 1; letter-spacing: -.01em; }
+.section-head p { color: var(--muted); max-width: var(--measure); margin-top: .7rem; }
+
+/* ──────────────────────────────────────────────────────── the flow ─── */
+.flow { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.step {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  gap: 0 1.4rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+@media (min-width: 60rem) {
+  .step { grid-template-columns: 3.2rem 15rem 1fr; gap: 0 2rem; }
+}
+.step-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--step--1);
+  color: var(--brass);
+  font-weight: 600;
+  padding-top: .3em;
+  font-variant-numeric: tabular-nums;
+}
+.step-what { font-weight: 600; letter-spacing: -.005em; }
+.step-does { color: var(--ink-soft); grid-column: 2 / -1; max-width: var(--measure); }
+@media (min-width: 60rem) { .step-does { grid-column: 3; } }
+.step-does .hard { color: var(--warn); font-weight: 500; }
+
+/* ────────────────────────────────────────────────────────── ledger ─── */
+.ledger-grid { display: grid; gap: 2rem; }
+@media (min-width: 62rem) { .ledger-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 3rem; align-items: start; } }
+
+.panel { border: 1px solid var(--rule-strong); background: var(--surface); box-shadow: var(--shadow); }
+.panel-head {
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-2);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+}
+.panel-body { padding: 1rem; overflow-x: auto; }
+
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: right; padding: .42rem .5rem; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th {
+  font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: .74rem;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--rule-strong); padding-bottom: .5rem;
+}
+tbody td { border-bottom: 1px dotted var(--rule); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr.reversal td { color: var(--warn); }
+tbody tr.reversal td:first-child::before { content: '↩ '; }
+.kind { font-family: 'IBM Plex Mono', monospace; font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+
+.controls { display: flex; flex-wrap: wrap; gap: .5rem; padding: 1rem; border-top: 1px solid var(--rule); background: var(--surface-2); }
+button {
+  font: inherit; font-size: var(--step--1); font-weight: 500;
+  padding: .48rem .85rem; cursor: pointer;
+  border: 1px solid var(--rule-strong); background: var(--surface); color: var(--ink);
+  transition: background .12s ease, border-color .12s ease;
+}
+button:hover { background: var(--ground); border-color: var(--muted); }
+button.primary { background: var(--green); border-color: var(--green); color: var(--surface); }
+:root[data-theme="dark"] button.primary, :root:not([data-theme="light"]) button.primary { color: #0d110e; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) button.primary { color: #f7f8f5; } }
+button.primary:hover { filter: brightness(1.12); }
+button.ghost { background: transparent; }
+
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule-strong); border-top: none; }
+.readout div { background: var(--surface); padding: .85rem 1rem; }
+.readout dt { font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.readout dd { margin: .2rem 0 0; font-size: var(--step-1); font-variant-numeric: tabular-nums; font-weight: 500; }
+.readout dd.accent { color: var(--green); }
+
+/* ───────────────────────────────────────────────────────── the bars ─── */
+.milestones { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.ms {
+  display: grid; grid-template-columns: 4.5rem 1fr auto; gap: 0 1.2rem;
+  padding: .85rem 0; border-bottom: 1px solid var(--rule); align-items: center;
+}
+.ms code { font-family: 'IBM Plex Mono', monospace; font-size: var(--step--1); color: var(--muted); }
+.ms .name { font-weight: 500; }
+.ms .name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--step--1); }
+.tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .08em;
+  text-transform: uppercase; padding: .22rem .5rem; border: 1px solid currentColor; white-space: nowrap;
+}
+.tag.done  { color: var(--green); }
+.tag.doing { color: var(--brass); }
+.tag.next  { color: var(--muted); border-style: dashed; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 2.5rem; }
+.facts div { background: var(--surface); padding: 1.1rem 1.2rem; }
+.facts dt { font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: .3rem 0 0; font-size: var(--step-2); font-variation-settings: 'SOFT' 0; font-family: Fraunces, Georgia, serif; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.facts dd small { display: block; margin-top: .5rem; font-family: 'IBM Plex Sans', sans-serif; font-size: var(--step--1); line-height: 1.5; color: var(--muted); }
+
+/* ───────────────────────────────────────────────────────── the rules ─── */
+.rules { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+@media (min-width: 48rem) { .rules { grid-template-columns: repeat(2, 1fr); } }
+.rule-card { background: var(--surface); padding: 1.4rem 1.5rem; }
+.rule-card h3 { font-size: var(--step-1); font-variation-settings: 'SOFT' 0, 'WONK' 1; margin-bottom: .5rem; }
+.rule-card p { color: var(--ink-soft); font-size: var(--step--1); max-width: 46ch; }
+
+/* ───────────────────────────────────────────────────────── questions ─── */
+.qs { counter-reset: q; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.q { padding: 1.35rem 0 1.35rem 3.2rem; border-bottom: 1px solid var(--rule); position: relative; }
+.q::before {
+  counter-increment: q; content: counter(q, decimal-leading-zero);
+  position: absolute; left: 0; top: 1.5rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: var(--step--1); color: var(--brass); font-weight: 600;
+}
+.q p:first-child { font-size: var(--step-1); font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 0, 'WONK' 1; max-width: 40ch; }
+.q p + p { margin-top: .45rem; color: var(--muted); font-size: var(--step--1); max-width: var(--measure); }
+
+footer { border-top: 1px solid var(--rule-strong); padding: 3rem 0 4rem; color: var(--muted); font-size: var(--step--1); }
+footer .stack { --gap: .5rem; }
+.built { font-family: 'IBM Plex Mono', monospace; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="wordmark">
+      <h1>Hisaab</h1>
+      <span class="urdu" aria-hidden="true">حساب</span>
+    </div>
+    <p class="lede">Software for a factory that buys things, makes things, sells things, and would like to know what it earned.</p>
+    <p class="claim">Powerful enough for a factory. Simple enough for your munshi.</p>
+
+    <div class="notice">
+      <strong>This is a preview, not a product.</strong> There is nothing here to sign into yet. The engine
+      underneath — the part that must never be wrong — is built and tested. The screens are not. This page
+      exists so you can tell us where we have the business wrong <em>before</em> the screens get built around it.
+    </div>
+  </div>
+</header>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The gap</p>
+      <div>
+        <h2>Between a billing app and a six-month project, there is nothing.</h2>
+        <p>
+          Pakistan has plenty of cheap retail billing software, and plenty of real ERP sold as a consulting
+          project. A factory with 20–250 staff sits between the two, and today runs on a billing app
+          <em>plus</em> Excel <em>plus</em> a paper register <em>plus</em> WhatsApp. That is the business
+          this replaces.
+        </p>
+      </div>
+    </div>
+
+    <dl class="facts">
+      <div><dt>Retail billing software</dt><dd class="num">Rs 2,000–15,000<small>per month, published prices, many vendors</small></dd></div>
+      <div><dt>Real ERP, installed</dt><dd class="num">Rs 500,000 +<small>quoted implementation, before the licences</small></dd></div>
+      <div><dt>What sits between</dt><dd>Nothing<small>that models a factory and a shop at once</small></dd></div>
+    </dl>
+    <p class="prose" style="margin-top:1.6rem;color:var(--muted);font-size:var(--step--1)">
+      Prices above are published list prices we checked ourselves. We are deliberately <em>not</em> quoting a
+      market-share number for Pakistan: we looked, and no credible source publishes one. Anyone who gives you
+      a percentage here has made it up.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The day</p>
+      <div>
+        <h2>The day this is built around.</h2>
+        <p>
+          This is our model of how the work actually goes, from the raw material arriving at the gate to the
+          money arriving in the account. Every screen we build has to fit somewhere on it.
+          <strong>If your day does not look like this, that is the single most useful thing you can tell us.</strong>
+        </p>
+      </div>
+    </div>
+
+    <ol class="flow" style="list-style:none;margin:0;padding:0">
+      <li class="step">
+        <span class="step-n">01</span>
+        <span class="step-what">You order material</span>
+        <span class="step-does">A purchase order to the supplier. Nothing has moved yet and nothing is owed yet — the order is a promise, not a fact, and the books stay untouched until something physically arrives.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">02</span>
+        <span class="step-what">Material arrives</span>
+        <span class="step-does">The storekeeper records what actually came, which is often not what was ordered. Stock goes up and a liability appears in the same instant, or neither does. <span class="hard">Short delivery, over delivery and the wrong item are the normal case, not the exception.</span></span>
+      </li>
+      <li class="step">
+        <span class="step-n">03</span>
+        <span class="step-what">The supplier's bill</span>
+        <span class="step-does">Matched against what arrived and what was ordered. Where the three disagree, the difference is shown rather than quietly absorbed.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">04</span>
+        <span class="step-what">Production starts</span>
+        <span class="step-does">A recipe says what a batch should consume. The supervisor presses <em>Start Production</em>, and material moves out of the store and into work-in-progress.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">05</span>
+        <span class="step-what">Material is issued</span>
+        <span class="step-does">What the recipe suggested, edited to what was really used. The gap between the two is the number nobody currently has.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">06</span>
+        <span class="step-what">Production finishes</span>
+        <span class="step-does">Good pieces, rejected pieces and scrap, entered on one screen. <span class="hard">If entering the spoilage is awkward, the spoilage number will be wrong forever</span> — so it is one field on the screen you are already on, not a form somebody has to go and find.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">07</span>
+        <span class="step-what">Finished goods land</span>
+        <span class="step-does">Now costed with what the batch really consumed, including what was wasted. This is the number the whole system exists to produce: what a unit actually cost you to make.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">08</span>
+        <span class="step-what">A customer orders</span>
+        <span class="step-does">On credit, usually. Their outstanding balance and their limit are on the screen before the order is taken, not discovered a month later.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">09</span>
+        <span class="step-what">You invoice</span>
+        <span class="step-does">Stock out, revenue in, cost of sale, sales tax and the FBR submission — all in one transaction. Either every one of those happens or none of them does.</span>
+      </li>
+      <li class="step">
+        <span class="step-n">10</span>
+        <span class="step-what">Money comes in</span>
+        <span class="step-does">Part payments, against several invoices, weeks late. <span class="hard">This is the normal case here and most software treats it as the exception.</span></span>
+      </li>
+      <li class="step">
+        <span class="step-n">11</span>
+        <span class="step-what">You find out what you earned</span>
+        <span class="step-does">Not at year end, from an accountant, six months after you could have done anything about it.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The idea</p>
+      <div>
+        <h2>Stock is never a number. It is a list of things that happened.</h2>
+        <p>
+          Most software keeps one figure per item and overwrites it. When it drifts — and it always drifts —
+          nobody can say when or why. Here, every movement is written down and kept, and the balance is worked
+          out from the list. A mistake is never rubbed out; it is reversed, and both lines stay.
+          <strong>Press the buttons.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="ledger-grid">
+      <div>
+        <div class="panel">
+          <div class="panel-head">
+            <span class="eyebrow">Movements — Polymer Granules, Main Store</span>
+            <span class="eyebrow" id="mv-count">0 lines</span>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead>
+                <tr><th scope="col">What happened</th><th scope="col">Qty</th><th scope="col">Rate</th><th scope="col">On hand</th><th scope="col">Avg cost</th></tr>
+              </thead>
+              <tbody id="mv-body"></tbody>
+            </table>
+          </div>
+          <div class="controls">
+            <button class="primary" data-act="receive">Receive 100 @ Rs 250</button>
+            <button data-act="receive-dear">Receive 100 @ Rs 310</button>
+            <button data-act="issue">Issue 60 to production</button>
+            <button data-act="scrap">Scrap 5</button>
+            <button class="ghost" data-act="undo">Reverse the last one</button>
+            <button class="ghost" data-act="reset">Start again</button>
+          </div>
+          <p id="mv-note" hidden style="margin:0;padding:.7rem 1rem;background:var(--surface-2);border-top:1px solid var(--rule);color:var(--warn);font-size:var(--step--1)">
+            More has gone out than ever came in. The real system records this and flags it rather than
+            refusing it — the material physically left the store, and pretending otherwise is how a stock
+            figure starts lying.
+          </p>
+          <dl class="readout">
+            <div><dt>On hand</dt><dd class="num" id="ro-qty">0</dd></div>
+            <div><dt>Average cost</dt><dd class="num" id="ro-avg">Rs 0.00</dd></div>
+            <div><dt>Stock value</dt><dd class="num accent" id="ro-val">Rs 0.00</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="stack prose" style="--gap:1.35rem">
+        <p><strong>Why it matters to you.</strong> The average cost above is what a unit of that material is
+        worth in your store <em>right now</em>, blending the cheap lot and the dear lot in the proportion you
+        actually hold. When it is issued to production, it is issued at that cost. That is how the cost of a
+        finished piece stops being a guess.</p>
+
+        <p><strong>Watch what happens when you reverse.</strong> The line does not disappear. A second,
+        opposite line appears beside it and both stay in the record forever. Nobody can quietly make a bad
+        month look better, and an auditor can always see what was changed and when.</p>
+
+        <p><strong>And it is checkable.</strong> Because the balance is only ever a sum of the list, it can be
+        recomputed from scratch at any time and compared with what is stored. If those two ever disagree,
+        something is wrong and we can prove it — rather than finding out because a customer's stock figure
+        looks odd.</p>
+
+        <p style="color:var(--muted);font-size:var(--step--1)">The arithmetic in this little panel is the same
+        rule the real engine uses. The real one works in exact fixed-point decimals, never in the rounding
+        arithmetic a browser does, because money that is out by a paisa a thousand times is out by ten rupees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The rules</p>
+      <div>
+        <h2>Things we have decided not to do.</h2>
+        <p>Each of these costs us work. They are here because the alternative costs you money or trust.</p>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="rule-card">
+        <h3>Nothing financial ever silently disappears</h3>
+        <p>A correction writes a reversing entry. Deleting a posted invoice is not a feature we will add, however often it is asked for, because the day you need to prove what happened is the day it matters.</p>
+      </div>
+      <div class="rule-card">
+        <h3>It keeps selling when the internet drops</h3>
+        <p>The counter keeps working through an outage and catches up afterwards. Pakistan had week-long nationwide slowdowns and evening loadshedding this year, and the tax rules grant no exemption for either.</p>
+      </div>
+      <div class="rule-card">
+        <h3>FBR invoicing is included, not an add-on</h3>
+        <p>A software vendor does not need a licence to do this — the business integrates through a licensed integrator, and the government's own integrator does it free. Others charge for it. We will not.</p>
+      </div>
+      <div class="rule-card">
+        <h3>AI never computes a number in your accounts</h3>
+        <p>It can find you a report and fill in the filters. The database produces the figure, and you can open the query it came from. A number no one can trace is worse than no number.</p>
+      </div>
+      <div class="rule-card">
+        <h3>No implementation project</h3>
+        <p>Free ERP already exists. What you cannot get is one that works on Monday without a partner, a server and three months. If we ever need a project to get you started, we have lost the only real argument we have.</p>
+      </div>
+      <div class="rule-card">
+        <h3>One business cannot see another</h3>
+        <p>Three separate locks, and a test suite that tries to break through every one of them on every table, every time we change anything. This is the mistake that would end the company, so it is tested like it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Progress</p>
+      <div>
+        <h2>What is actually built, honestly.</h2>
+        <p>
+          The order is deliberate: the parts that cannot be fixed later come first, and the parts you would
+          rather see come after. Nothing below is marked done unless it is written, tested and committed.
+        </p>
+      </div>
+    </div>
+
+    <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">849</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">36</dd></div>
+      <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
+      <div><dt>Screens you can use today</dt><dd class="num">0</dd></div>
+    </dl>
+
+    <div class="milestones">
+      <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, the record of who did what</small></span><span class="tag done">Built</span></div>
+      <div class="ms"><code>—</code><span class="name">The money and stock engine<small>Exact decimals, the stock ledger, double-entry, Pakistani sales tax</small></span><span class="tag done">Built</span></div>
+      <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
+      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Including importing five thousand rows out of your existing Excel without a fight</small></span><span class="tag doing">In hand</span></div>
+      <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M4</code><span class="name">The books<small>Chart of accounts, journals, trial balance, profit and loss</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M5</code><span class="name">Buying<small>Order, receipt, bill, supplier balances and ageing</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M6</code><span class="name">Selling<small>Order, delivery, invoice, payment, customer balances, credit limits</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M7</code><span class="name">The counter, offline<small>Keeps billing with no internet, catches up by itself</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M8</code><span class="name">Making things<small>Recipes, production orders, material issue, good and rejected and scrap, real cost per unit</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M9</code><span class="name">Reports and the owner's screen<small>Today's sales, what you are owed, what you owe, stock value, what you made</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M10</code><span class="name">FBR digital invoicing<small>Every sandbox case green before a single real invoice goes near it</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M11</code><span class="name">Hardening<small>Restore rehearsals, load testing, security review, Urdu on the screens the floor uses</small></span><span class="tag next">Next</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Over to you</p>
+      <div>
+        <h2>Where we are probably wrong.</h2>
+        <p>
+          Everything above was built from research, not from a factory. These are the specific things we have
+          guessed at. We are not asking which features you want — we are asking how the work actually goes,
+          because the features follow from that and never the other way round.
+        </p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <p>Walk us through yesterday, from the gate to the bank.</p>
+        <p>Not how it should work. What actually happened, including the part that went wrong and what somebody did about it.</p>
+      </div>
+      <div class="q">
+        <p>What do you write on paper that no software has ever replaced?</p>
+        <p>The register, the gate slip, the diary in the drawer. Whatever survived every previous attempt is the thing that matters most.</p>
+      </div>
+      <div class="q">
+        <p>When material is short-delivered, who finds out, and when?</p>
+        <p>We have assumed the storekeeper records it as it lands. If it is really reconciled a week later against a delivery challan, our whole receiving screen is wrong.</p>
+      </div>
+      <div class="q">
+        <p>How do you know today what a finished piece cost you?</p>
+        <p>If the honest answer is "roughly" or "at year end", say so. That is the number we think is worth paying for, and we would like to know if we are right.</p>
+      </div>
+      <div class="q">
+        <p>What percentage is wasted, and how do you know?</p>
+        <p>And who would be embarrassed by that number appearing on a screen? That question decides whether the feature works or is quietly avoided.</p>
+      </div>
+      <div class="q">
+        <p>Who owes you the most right now, and how long did it take you to answer that?</p>
+        <p>If the answer came from a phone call to your accountant, that is the thing to fix first.</p>
+      </div>
+      <div class="q">
+        <p>What happens on a day the internet is down?</p>
+        <p>Do you stop billing, bill on paper, or carry on and fix it later? We have built for the third and we may be building for a habit you do not have.</p>
+      </div>
+      <div class="q">
+        <p>Who at your factory will refuse to use this?</p>
+        <p>There is always one, and they are usually right about something. Naming them now is cheaper than discovering them at go-live.</p>
+      </div>
+      <div class="q">
+        <p>What did you try before, and why did it stop being used?</p>
+        <p>The month it was abandoned, and what people went back to. That story predicts our failure better than any feature list.</p>
+      </div>
+    </div>
+
+    <p class="prose" style="margin-top:2.4rem;font-size:var(--step-1);font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 0,'WONK' 1">
+      Answers go straight back to whoever sent you this link. There is no form here, on purpose — this should
+      be a conversation, not a survey.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap stack">
+    <p class="built">Hisaab — a working name. حساب: account, reckoning.</p>
+    <p>A preview of work in progress. Nothing on this page is a product you can buy, and no figures shown are from a real business.</p>
+    <p class="built">Last updated 1 September 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── The same rule the real engine uses, in miniature ──────────────────
+  //
+  // Receipts move the average towards the new rate in proportion to what is
+  // already on hand. Issues never carry a rate of their own: they leave at
+  // whatever the material is currently worth, which is the whole point of a
+  // moving average. Reversals are new lines, never deletions.
+  var START = [];
+  var lines = START.slice();
+
+  var ACTIONS = {
+    receive:      { label: 'Received from supplier', kind: 'receipt', qty:  100, rate: 250 },
+    'receive-dear':{ label: 'Received from supplier', kind: 'receipt', qty: 100, rate: 310 },
+    issue:        { label: 'Issued to production',  kind: 'issue',   qty:  -60, rate: null },
+    scrap:        { label: 'Scrapped, damaged',     kind: 'scrap',   qty:   -5, rate: null }
+  };
+
+  function balances(list) {
+    var qty = 0, avg = 0, rows = [];
+    for (var i = 0; i < list.length; i++) {
+      var line = list[i];
+      var value = qty * avg;
+
+      if (line.rate !== null) {
+        // Something arriving, or the reversal of something that arrived. Both
+        // move value in and out at a known rate, so the average is recomputed.
+        value += line.qty * line.rate;
+        qty += line.qty;
+        avg = qty > 0 ? value / qty : 0;
+      } else {
+        // Something leaving. It leaves at whatever the material is worth now,
+        // so the average does not move at all — that is the whole idea.
+        qty += line.qty;
+        if (qty <= 0) avg = qty === 0 ? avg : avg;
+      }
+
+      rows.push({ line: line, qty: qty, avg: avg, short: qty < 0 });
+    }
+    return rows;
+  }
+
+  var rupee = function (n) {
+    return 'Rs ' + n.toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+  var plain = function (n) {
+    return n.toLocaleString('en-PK', { maximumFractionDigits: 3 });
+  };
+
+  var body = document.getElementById('mv-body');
+  var count = document.getElementById('mv-count');
+
+  function render() {
+    var rows = balances(lines);
+    body.textContent = '';
+
+    if (rows.length === 0) {
+      var empty = document.createElement('tr');
+      // Not `cell`: a `var` of that name here is hoisted over the whole
+      // function and shadows the `cell()` below, which is exactly the sort of
+      // thing that only shows up when somebody presses the button.
+      var blank = document.createElement('td');
+      blank.colSpan = 5;
+      blank.style.color = 'var(--muted)';
+      blank.style.padding = '1.2rem .5rem';
+      blank.textContent = 'Nothing has happened yet. Press a button.';
+      empty.appendChild(blank);
+      body.appendChild(empty);
+    }
+
+    rows.forEach(function (row) {
+      var tr = document.createElement('tr');
+      if (row.line.reversal) tr.className = 'reversal';
+
+      var what = document.createElement('td');
+      what.appendChild(document.createTextNode(row.line.label));
+      var kind = document.createElement('div');
+      kind.className = 'kind';
+      kind.textContent = row.line.kind;
+      what.appendChild(kind);
+
+      var cells = [
+        what,
+        cell(plain(row.line.qty)),
+        cell(row.line.rate === null ? '—' : rupee(row.line.rate)),
+        cell(plain(row.qty)),
+        cell(rupee(row.avg))
+      ];
+      cells.forEach(function (c) { tr.appendChild(c); });
+      body.appendChild(tr);
+    });
+
+    count.textContent = rows.length + (rows.length === 1 ? ' line' : ' lines');
+
+    var last = rows.length > 0 ? rows[rows.length - 1] : { qty: 0, avg: 0, short: false };
+    var qtyOut = document.getElementById('ro-qty');
+    qtyOut.textContent = plain(last.qty);
+    qtyOut.style.color = last.short ? 'var(--warn)' : '';
+    var note = document.getElementById('mv-note');
+    note.hidden = !last.short;
+    document.getElementById('ro-avg').textContent = rupee(last.avg);
+    document.getElementById('ro-val').textContent = rupee(last.qty * last.avg);
+  }
+
+  function cell(text) {
+    var td = document.createElement('td');
+    td.textContent = text;
+    return td;
+  }
+
+  document.querySelectorAll('[data-act]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var act = button.getAttribute('data-act');
+
+      if (act === 'reset') { lines = START.slice(); render(); return; }
+
+      if (act === 'undo') {
+        // Find the newest line that has not already been reversed.
+        var reversed = {};
+        lines.forEach(function (l) { if (l.reverses !== undefined) reversed[l.reverses] = true; });
+        for (var i = lines.length - 1; i >= 0; i--) {
+          if (lines[i].reversal || reversed[i]) continue;
+          lines.push({
+            label: 'Reversal of "' + lines[i].label + '"',
+            kind: 'reversal',
+            qty: -lines[i].qty,
+            rate: lines[i].rate,
+            reversal: true,
+            reverses: i
+          });
+          render();
+          return;
+        }
+        return;
+      }
+
+      var template = ACTIONS[act];
+      if (template === undefined) return;
+      lines.push({ label: template.label, kind: template.kind, qty: template.qty, rate: template.rate });
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
