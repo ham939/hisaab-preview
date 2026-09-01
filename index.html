@@ -321,9 +321,10 @@ footer .stack { --gap: .5rem; }
     <p class="claim">Powerful enough for a factory. Simple enough for your munshi.</p>
 
     <div class="notice">
-      <strong>This is a preview, not a product.</strong> There is nothing here to sign into yet. The engine
-      underneath — the part that must never be wrong — is built and tested. The screens are not. This page
-      exists so you can tell us where we have the business wrong <em>before</em> the screens get built around it.
+      <strong>This is a preview, not a product.</strong> The engine underneath — the part that must never be
+      wrong — is built and tested. Ten screens sit on top of it and you can sign into them further down this
+      page. Most of the day-to-day work is still missing, and every missing piece is named rather than hidden.
+      This page exists so you can tell us where we have the business wrong <em>while</em> the rest is built.
     </div>
   </div>
 </header>
@@ -344,11 +345,19 @@ footer .stack { --gap: .5rem; }
     </p>
     <p><a class="cta" href="https://guides-pockets-cooking-taxi.trycloudflare.com">Open Hisaab</a></p>
     <p class="prose small">
-      Worth a look: <strong>Items</strong>, where a price and a tax treatment sit
-      on the same row and exempt is written as the word rather than as 0%;
-      <strong>Customers</strong>, where a business that both buys from you and
-      sells to you is one record and says so. Everything else in the menu is
-      listed as not built, on purpose.
+      Worth a look: <strong>Stock</strong>, and then any item in it. The history
+      at the bottom of an item is every single thing that ever happened to it,
+      and the figure at the top is the sum of that history rather than a number
+      somebody typed. The cotton was bought three times at three different
+      prices; the rate it now issues at is none of them, because it is the
+      average. Two bales were rained on, and the entry says so, with the reason,
+      six weeks later. Nothing on that page can be typed over, and every line
+      has an <strong>Undo this</strong> beside it that writes an opposite entry
+      rather than rubbing anything out. Also <strong>Items</strong>, where a
+      price and a tax treatment sit on the same row and exempt is written as the
+      word rather than as 0%; and <strong>Customers</strong>, where a business
+      that both buys from you and sells to you is one record and says so.
+      Everything else in the menu is listed as not built, on purpose.
     </p>
     <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
@@ -605,18 +614,18 @@ footer .stack { --gap: .5rem; }
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,240</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">57</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,422</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">62</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
-      <div><dt>Screens you can use today</dt><dd class="num">8</dd></div>
+      <div><dt>Screens you can use today</dt><dd class="num">10</dd></div>
     </dl>
 
     <div class="milestones">
       <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, the record of who did what</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">The money and stock engine<small>Exact decimals, the stock ledger, double-entry, Pakistani sales tax</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
-      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Including importing five thousand rows out of your existing Excel without a fight</small></span><span class="tag doing">In hand</span></div>
-      <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag next">Next</span></div>
+      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists and forms are built and in the demo. The Excel importer is not written yet.</small></span><span class="tag doing">In hand</span></div>
+      <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M4</code><span class="name">The books<small>Chart of accounts, journals, trial balance, profit and loss</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M5</code><span class="name">Buying<small>Order, receipt, bill, supplier balances and ageing</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M6</code><span class="name">Selling<small>Order, delivery, invoice, payment, customer balances, credit limits</small></span><span class="tag next">Next</span></div>
