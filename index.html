@@ -353,11 +353,30 @@ footer .stack { --gap: .5rem; }
       average. Two bales were rained on, and the entry says so, with the reason,
       six weeks later. Nothing on that page can be typed over, and every line
       has an <strong>Undo this</strong> beside it that writes an opposite entry
-      rather than rubbing anything out. Also <strong>Items</strong>, where a
-      price and a tax treatment sit on the same row and exempt is written as the
-      word rather than as 0%; and <strong>Customers</strong>, where a business
-      that both buys from you and sells to you is one record and says so.
-      Everything else in the menu is listed as not built, on purpose.
+      rather than rubbing anything out.
+    </p>
+    <p class="prose small">
+      Then <strong>Items</strong> &mdash; a price and a tax treatment on the same
+      row, with exempt written as the word rather than as 0%. Open
+      <em>Cotton Yarn 30s</em> and scroll to the bottom: it has two barcodes,
+      because the 25&nbsp;kg bag on the pallet and the loose weight over the
+      counter are two different scans of the same item, and the form says which
+      is which. <em>Raw Cotton</em> is the other half of the same idea &mdash; it
+      arrives by the bale and is stocked by the kilogram, and the line under the
+      row reads <em>one bale = 170 kg</em>, so a goods receipt can be entered in
+      the unit the delivery note is written in.
+    </p>
+    <p class="prose small">
+      And <strong>Items &rarr; Bring in a file</strong>, which is how a real
+      first day starts. Drop the spreadsheet you already have; the column
+      headings are guessed, in English or Urdu, and you correct the guess. Then
+      it does the entire import against the real rules and throws it away, and
+      shows you what <em>would</em> happen &mdash; not an estimate, an actual
+      import that was rolled back. Rows it would refuse come back out as a file
+      with the reason in the first column. The file itself never leaves your
+      machine. <strong>Customers</strong> is worth a minute too: a business that
+      both buys from you and sells to you is one record and says so. Everything
+      else in the menu is listed as not built, on purpose.
     </p>
     <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
@@ -614,8 +633,8 @@ footer .stack { --gap: .5rem; }
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,727</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">71</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,812</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">73</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
       <div><dt>Screens you can use today</dt><dd class="num">11</dd></div>
     </dl>
@@ -624,7 +643,7 @@ footer .stack { --gap: .5rem; }
       <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, the record of who did what</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">The money and stock engine<small>Exact decimals, the stock ledger, double-entry, Pakistani sales tax</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
-      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms and the spreadsheet importer are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
+      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms, barcodes, pack sizes and the spreadsheet importer are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
       <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M4</code><span class="name">The books<small>Chart of accounts, journals, trial balance, profit and loss</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M5</code><span class="name">Buying<small>Order, receipt, bill, supplier balances and ageing</small></span><span class="tag next">Next</span></div>
