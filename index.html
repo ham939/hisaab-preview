@@ -395,6 +395,19 @@ footer .stack { --gap: .5rem; }
       Everything else in the menu is listed as not built, on purpose.
     </p>
     <p class="prose small">
+      One thing you cannot see in the demo is running underneath all of it. Every
+      change to an item, a group, a barcode, a pack size, a batch, a customer, a
+      supplier, a contact, a unit or a store now writes a line saying who changed
+      it, what it was before, what it is now, and which sitting they were signed
+      in for. That line is written by the database at the moment the change lands,
+      not by the screen that made it &mdash; so a page written next year cannot
+      forget to write one, because there is nothing for it to remember. Only the
+      fields that actually moved are kept, and saving a form without changing
+      anything writes nothing, so it is a record of changes rather than a log of
+      clicks. There is no screen for reading it back yet; that comes with the
+      first module where somebody argues about a number.
+    </p>
+    <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
       point of how it is being built &mdash; but it does mean the door is
       occasionally shut. If it will not open, try again a little later.
@@ -649,14 +662,14 @@ footer .stack { --gap: .5rem; }
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,954</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">76</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,976</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">78</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
       <div><dt>Screens you can use today</dt><dd class="num">11</dd></div>
     </dl>
 
     <div class="milestones">
-      <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, the record of who did what</small></span><span class="tag done">Built</span></div>
+      <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, and the record of who changed what &mdash; written by the database itself, so nothing can be edited without it</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">The money and stock engine<small>Exact decimals, the stock ledger, double-entry, Pakistani sales tax</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms, barcodes, pack sizes and the spreadsheet importer &mdash; for items and for customers and suppliers &mdash; are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
