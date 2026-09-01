@@ -379,9 +379,20 @@ footer .stack { --gap: .5rem; }
       is two columns and it should not wipe the codes you typed yourself. If
       Excel has turned a thirteen-digit barcode into <em>8.96123E+12</em>, it
       says so in those words and tells you to set the column to Text.
-      <strong>Customers</strong> is worth a minute too: a business that
-      both buys from you and sells to you is one record and says so. Everything
-      else in the menu is listed as not built, on purpose.
+    </p>
+    <p class="prose small">
+      <strong>Customers &rarr; Bring in a file</strong> is the same door for the
+      other list, and it asks one question the item importer never has to: is
+      this file your customers or your suppliers? A customer ledger and a
+      supplier ledger are the same columns with different meanings, so it starts
+      empty and will not run until you say &mdash; and it does not take the
+      answer from whichever list you clicked in from, because that says where
+      you were standing, not what is in the file. If your file has its own
+      column for it, that wins row by row. A business that turns up in both
+      files ends up as one record marked as both, never as two records with the
+      balance split down the middle, and an import can only ever add a side to
+      somebody &mdash; it cannot take one away and hide what they owe you.
+      Everything else in the menu is listed as not built, on purpose.
     </p>
     <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
@@ -638,8 +649,8 @@ footer .stack { --gap: .5rem; }
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,839</dd></div>
-      <div><dt>Test files</dt><dd class="num" data-fact="files">73</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,953</dd></div>
+      <div><dt>Test files</dt><dd class="num" data-fact="files">76</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
       <div><dt>Screens you can use today</dt><dd class="num">11</dd></div>
     </dl>
@@ -648,7 +659,7 @@ footer .stack { --gap: .5rem; }
       <div class="ms"><code>M1</code><span class="name">Foundations<small>Businesses, branches, stores, people, roles, sign-in, second factor, the record of who did what</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">The money and stock engine<small>Exact decimals, the stock ledger, double-entry, Pakistani sales tax</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>—</code><span class="name">Running it on one machine<small>One image, updates with no downtime, backups, the whole thing on hardware you own</small></span><span class="tag done">Built</span></div>
-      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms, barcodes, pack sizes and the spreadsheet importer are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
+      <div class="ms"><code>M2</code><span class="name">Products, customers, suppliers<small>Lists, forms, barcodes, pack sizes and the spreadsheet importer &mdash; for items and for customers and suppliers &mdash; are built and in the demo. Price lists are not written yet.</small></span><span class="tag doing">In hand</span></div>
       <div class="ms"><code>M3</code><span class="name">Stock, stored<small>Opening stock, adjustments, transfers, counts, item history</small></span><span class="tag done">Built</span></div>
       <div class="ms"><code>M4</code><span class="name">The books<small>Chart of accounts, journals, trial balance, profit and loss</small></span><span class="tag next">Next</span></div>
       <div class="ms"><code>M5</code><span class="name">Buying<small>Order, receipt, bill, supplier balances and ageing</small></span><span class="tag next">Next</span></div>
