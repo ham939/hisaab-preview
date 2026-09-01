@@ -374,7 +374,12 @@ footer .stack { --gap: .5rem; }
       shows you what <em>would</em> happen &mdash; not an estimate, an actual
       import that was rolled back. Rows it would refuse come back out as a file
       with the reason in the first column. The file itself never leaves your
-      machine. <strong>Customers</strong> is worth a minute too: a business that
+      machine. A barcode column is read too, and added to the item rather than
+      put in place of what it already has &mdash; a supplier&rsquo;s barcode list
+      is two columns and it should not wipe the codes you typed yourself. If
+      Excel has turned a thirteen-digit barcode into <em>8.96123E+12</em>, it
+      says so in those words and tells you to set the column to Text.
+      <strong>Customers</strong> is worth a minute too: a business that
       both buys from you and sells to you is one record and says so. Everything
       else in the menu is listed as not built, on purpose.
     </p>
@@ -633,7 +638,7 @@ footer .stack { --gap: .5rem; }
       Last checked: 1 September 2026.
     -->
     <dl class="facts" style="margin-top:0;margin-bottom:2.5rem">
-      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,812</dd></div>
+      <div><dt>Automated tests passing</dt><dd class="num" data-fact="tests">1,839</dd></div>
       <div><dt>Test files</dt><dd class="num" data-fact="files">73</dd></div>
       <div><dt>Known security advisories</dt><dd class="num">0</dd></div>
       <div><dt>Screens you can use today</dt><dd class="num">11</dd></div>
