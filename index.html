@@ -335,137 +335,16 @@ footer .stack { --gap: .5rem; }
     <p class="eyebrow">Try it</p>
     <h2>The half-built thing itself.</h2>
     <p class="prose">
-      Not a video and not a screenshot &mdash; the actual software, running right now.
-      Sign in and press whatever you like. The business inside it is invented, a
-      textile mill in Karachi with five customers and suppliers and a handful of
-      items, and it is put back the way it was every so often, so nothing you type
-      can break anything.
+      Not a video and not a screenshot — the actual software, running right now.
+      Sign in and press whatever you like. The business inside it is invented, and
+      it is put back the way it was every so often, so nothing you type can break
+      anything.
     </p>
-    <p class="prose">
-      <strong>Email</strong> hamza@hisaab.pk &nbsp;&middot;&nbsp; <strong>Password</strong> hamza
-    </p>
-    <p><a class="cta" href="https://excellent-analyst-boutique-shown.trycloudflare.com">Open Hisaab</a></p>
-    <p class="prose small">
-      Worth a look: <strong>Stock</strong>, and then any item in it. The history
-      at the bottom of an item is every single thing that ever happened to it,
-      and the figure at the top is the sum of that history rather than a number
-      somebody typed. The cotton was bought three times at three different
-      prices; the rate it now issues at is none of them, because it is the
-      average. Two bales were rained on, and the entry says so, with the reason,
-      six weeks later. Nothing on that page can be typed over, and every line
-      has an <strong>Undo this</strong> beside it that writes an opposite entry
-      rather than rubbing anything out.
-    </p>
-    <p class="prose small">
-      Then <strong>Items</strong> &mdash; a price and a tax treatment on the same
-      row, with exempt written as the word rather than as 0%. Open
-      <em>Cotton Yarn 30s</em> and scroll to the bottom: it has two barcodes,
-      because the 25&nbsp;kg bag on the pallet and the loose weight over the
-      counter are two different scans of the same item, and the form says which
-      is which. <em>Raw Cotton</em> is the other half of the same idea &mdash; it
-      arrives by the bale and is stocked by the kilogram, and the line under the
-      row reads <em>one bale = 170 kg</em>, so a goods receipt can be entered in
-      the unit the delivery note is written in.
-    </p>
-    <p class="prose small">
-      And <strong>Items &rarr; Bring in a file</strong>, which is how a real
-      first day starts. Drop the spreadsheet you already have; the column
-      headings are guessed, in English or Urdu, and you correct the guess. Then
-      it does the entire import against the real rules and throws it away, and
-      shows you what <em>would</em> happen &mdash; not an estimate, an actual
-      import that was rolled back. Rows it would refuse come back out as a file
-      with the reason in the first column. The file itself never leaves your
-      machine. A barcode column is read too, and added to the item rather than
-      put in place of what it already has &mdash; a supplier&rsquo;s barcode list
-      is two columns and it should not wipe the codes you typed yourself. If
-      Excel has turned a thirteen-digit barcode into <em>8.96123E+12</em>, it
-      says so in those words and tells you to set the column to Text.
-    </p>
-    <p class="prose small">
-      <strong>Customers &rarr; Bring in a file</strong> is the same door for the
-      other list, and it asks one question the item importer never has to: is
-      this file your customers or your suppliers? A customer ledger and a
-      supplier ledger are the same columns with different meanings, so it starts
-      empty and will not run until you say &mdash; and it does not take the
-      answer from whichever list you clicked in from, because that says where
-      you were standing, not what is in the file. If your file has its own
-      column for it, that wins row by row. A business that turns up in both
-      files ends up as one record marked as both, never as two records with the
-      balance split down the middle, and an import can only ever add a side to
-      somebody &mdash; it cannot take one away and hide what they owe you.
-    </p>
-    <p class="prose small">
-      Then <strong>The books</strong>, which is the part an accountant asks about
-      first. <strong>Trial balance</strong> says <em>the two sides match</em>, and
-      it is not a decoration &mdash; an entry that does not balance is refused
-      twice, once by the code and once by the database itself, so an unbalanced
-      book is not a thing that can exist here. <strong>Did you make money?</strong>
-      and <strong>What it is worth</strong> are the same two statements every
-      package has, under the names people actually use. All three are worked out
-      in one place, from one reading of the accounts, because three separate
-      calculations is how software ends up showing two answers that disagree by a
-      few rupees with nobody able to say which one is lying.
-    </p>
-    <p class="prose small">
-      Open <strong>Entries</strong> and look for a delete button. There isn&rsquo;t
-      one, and there is no edit either. A posted entry is finished; a mistake is
-      corrected by <strong>Reverse this entry</strong>, which writes the opposite
-      one and leaves both on the record, so the story of a wrong figure and its
-      correction is still readable a year later. Open any account and it has its
-      own running column, brought forward from before the dates you asked for.
-      The stock figures in these books are not typed in to match the stock screen
-      &mdash; they are read out of the stock ledger itself, movement by movement,
-      which is why the raw material on the balance sheet is the same number to the
-      last paisa as the raw material on <strong>Stock</strong>. Two screens that
-      disagree by four hundred rupees is the thing this is built to make
-      impossible. Everything else in the menu is listed as not built, on purpose.
-    </p>
-    <p class="prose small">
-      One thing you cannot see in the demo is running underneath all of it. Every
-      change to an item, a group, a barcode, a pack size, a batch, a customer, a
-      supplier, a contact, a unit or a store now writes a line saying who changed
-      it, what it was before, what it is now, and which sitting they were signed
-      in for. That line is written by the database at the moment the change lands,
-      not by the screen that made it &mdash; so a page written next year cannot
-      forget to write one, because there is nothing for it to remember. Only the
-      fields that actually moved are kept, and saving a form without changing
-      anything writes nothing, so it is a record of changes rather than a log of
-      clicks.
-    </p>
-    <p class="prose small">
-      And you can read it. Open <em>Gul Ahmed Trading</em> and press
-      <strong>Show the history</strong>: it says who raised their credit limit,
-      from what to what, and when &mdash; in words, not in database columns. Open
-      <em>Paper Bobbin</em> and the barcode somebody added to it is in the item&rsquo;s
-      own history, because nobody thinks of a barcode as a record of its own. It
-      stays closed until you ask for it, since a history is what you go looking
-      for when something is wrong rather than what you came to the page to read.
-      Being allowed to read it is narrower than it sounds: somebody who cannot
-      open a supplier cannot read a supplier&rsquo;s history either, and a person
-      who may not see what stock cost sees the line saying the cost was changed
-      with the figures left out &mdash; which is true, where quietly dropping the
-      line would not be.
-    </p>
-    <p class="prose small">
-      The newest piece of it is the half that was missing. Until this week every
-      one of those lines was about a <em>thing</em> &mdash; an item, a customer, a
-      store, an account. Nothing recorded who was allowed to touch them. Somebody
-      could hand a job title every permission in the product, make a member an
-      owner, or give a person the keys to a branch they were never meant to see,
-      and there was nowhere to look afterwards. That is backwards: the question
-      asked after something goes wrong is almost never &ldquo;who edited this
-      item&rdquo;, it is &ldquo;who gave them the ability to&rdquo;. Now the
-      business&rsquo;s own details, its branches, its people, the branches and
-      stores each person can reach, its job titles and what each one is allowed
-      to do all write the same line, from the same place, at the same moment the
-      change lands. A business also records its own beginning &mdash; the very
-      first line in its history is itself being created, and it names the person
-      who signed up.
-    </p>
+    <p><a class="cta" href="https://housewives-brass-used-moreover.trycloudflare.com">Open Hisaab</a></p>
     <p class="prose small">
       It runs on one laptop rather than on rented servers, which is the whole
-      point of how it is being built &mdash; but it does mean the door is
-      occasionally shut. If it will not open, try again a little later.
+      point of how it is being built — but it does mean the door is occasionally
+      shut. If it will not open, try again a little later.
     </p>
   </div>
 </section>
